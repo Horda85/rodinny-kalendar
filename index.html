@@ -939,6 +939,7 @@
       <button class="add-btn" onclick="openAddModal()">+ Přidat</button>
       <button class="add-btn" style="background:linear-gradient(135deg,#c8a800,#e8c800);" onclick="openSkolkaModal()">📷 Školka</button>
       <button class="nav-btn" onclick="openModal('settings-modal')" title="Nastavení">⚙️</button>
+      <button class="nav-btn" id="login-btn" onclick="manualLogin()" title="Přihlásit se" style="background:#a0784a;color:white;border-color:#a0784a;">🔑</button>
       <div class="sync-status">
         <div class="sync-dot" id="sync-dot"></div>
         <span id="sync-label">Synced</span>
@@ -1155,13 +1156,8 @@
   </div>
 </div>
 
-<!-- Login Banner -->
-<div id="login-banner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:300;background:#a0784a;color:white;padding:0.75rem 1.5rem;display:none;align-items:center;justify-content:space-between;gap:1rem;">
-  <span style="font-size:0.9rem;">🔒 Přihlas se pro zobrazení rodinného kalendáře</span>
-  <button onclick="manualLogin()" style="background:white;color:#a0784a;border:none;border-radius:8px;padding:0.5rem 1.2rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;">
-    Přihlásit se
-  </button>
-</div>
+<!-- Login Button (místo banneru) -->
+<div id="login-banner" style="display:none;"><!-- skryto --></div>
 
 <div class="toast" id="toast"></div>
 
@@ -1999,14 +1995,14 @@ window.addEventListener('load', () => {
 });
 
 function showLoginBanner(tokenClient) {
-  const banner = document.getElementById('login-banner');
-  if (banner) banner.style.display = 'flex';
+  const btn = document.getElementById('login-btn');
+  if (btn) btn.style.display = 'flex';
   state.tokenClient = tokenClient;
 }
 
 function hideLoginBanner() {
-  const banner = document.getElementById('login-banner');
-  if (banner) banner.style.display = 'none';
+  const btn = document.getElementById('login-btn');
+  if (btn) btn.style.display = 'none';
 }
 
 function manualLogin() {
