@@ -2008,6 +2008,15 @@ function hideLoginBanner() {
 function manualLogin() {
   if (state.tokenClient) {
     state.tokenClient.requestAccessToken({ prompt: 'consent' });
+  } else {
+    // tokenClient ještě není připraven – spusť celou inicializaci
+    const apiKey = CONFIG.API_KEY;
+    const clientId = CONFIG.CLIENT_ID;
+    if (apiKey && clientId) {
+      initGoogleAPI(apiKey, clientId);
+    } else {
+      showToast('Chybí API klíče v CONFIG.', 'error');
+    }
   }
 }
 
