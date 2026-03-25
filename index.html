@@ -2145,8 +2145,10 @@ async function analyzeImage() {
     return;
   }
 
-  const anthropicKey = CONFIG.ANTHROPIC_KEY
-    || document.getElementById('anthropic-key-input').value.trim();
+const anthropicKey = document.getElementById('anthropic-key-input').value.trim()
+    || CONFIG.ANTHROPIC_KEY
+    || localStorage.getItem('anthropic_key')
+    || '';
 
   if (!anthropicKey) {
     showToast('Zadej Anthropic API Key.', 'error');
