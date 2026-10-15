@@ -1935,10 +1935,10 @@ document.addEventListener('keydown', e => {
 });
 
 // Auto-load saved credentials
-window.addEventListener('load', () => {
   const savedAnthropicKey = localStorage.getItem('anthropic_key');
-  if (savedAnthropicKey) {
-    document.getElementById('anthropic-key-input').value = savedAnthropicKey;
+  const anthropicInput = document.getElementById('anthropic-key-input');
+  if (savedAnthropicKey && anthropicInput) {
+    anthropicInput.value = savedAnthropicKey;
   }
 
   const apiKey = CONFIG.API_KEY;
